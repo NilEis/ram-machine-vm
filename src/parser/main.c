@@ -1,0 +1,7 @@
+
+
+void parse()
+{
+    yyparse();
+    return;
+}

@@ -1,0 +1,6 @@
+[submodule "extern/c-logger"]
+	path = extern/c-logger
+	url = https://github.com/NilEis/c-logger.git
+[submodule "extern/terminal"]
+	path = extern/terminal
+	url = https://github.com/NilEis/C-Terminal.git
