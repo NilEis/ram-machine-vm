@@ -118,26 +118,29 @@ enum yysymbol_kind_t
   YYSYMBOL_PRINT_REGISTER = 5,             /* PRINT_REGISTER  */
   YYSYMBOL_PRINT_PC_LINE = 6,              /* PRINT_PC_LINE  */
   YYSYMBOL_PRINT_PC = 7,                   /* PRINT_PC  */
-  YYSYMBOL_INSTRUCTION_STEP = 8,           /* INSTRUCTION_STEP  */
-  YYSYMBOL_INSTRUCTION_RUN = 9,            /* INSTRUCTION_RUN  */
-  YYSYMBOL_INSTRUCTION_EXIT = 10,          /* INSTRUCTION_EXIT  */
-  YYSYMBOL_EQ = 11,                        /* EQ  */
-  YYSYMBOL_LEQ = 12,                       /* LEQ  */
-  YYSYMBOL_GEQ = 13,                       /* GEQ  */
-  YYSYMBOL_LE = 14,                        /* LE  */
-  YYSYMBOL_GE = 15,                        /* GE  */
-  YYSYMBOL_BRACKET_LEFT = 16,              /* BRACKET_LEFT  */
-  YYSYMBOL_BRACKET_RIGHT = 17,             /* BRACKET_RIGHT  */
-  YYSYMBOL_LINE_SEPARATOR = 18,            /* LINE_SEPARATOR  */
-  YYSYMBOL_YYACCEPT = 19,                  /* $accept  */
-  YYSYMBOL_input = 20,                     /* input  */
-  YYSYMBOL_op = 21,                        /* op  */
-  YYSYMBOL_instruction = 22,               /* instruction  */
-  YYSYMBOL_print = 23,                     /* print  */
-  YYSYMBOL_step = 24,                      /* step  */
-  YYSYMBOL_run = 25,                       /* run  */
-  YYSYMBOL_exit = 26,                      /* exit  */
-  YYSYMBOL_VAL = 27                        /* VAL  */
+  YYSYMBOL_PRINT_PROG = 8,                 /* PRINT_PROG  */
+  YYSYMBOL_INSTRUCTION_STEP = 9,           /* INSTRUCTION_STEP  */
+  YYSYMBOL_INSTRUCTION_GET = 10,           /* INSTRUCTION_GET  */
+  YYSYMBOL_INSTRUCTION_RUN = 11,           /* INSTRUCTION_RUN  */
+  YYSYMBOL_INSTRUCTION_EXIT = 12,          /* INSTRUCTION_EXIT  */
+  YYSYMBOL_EQ = 13,                        /* EQ  */
+  YYSYMBOL_LEQ = 14,                       /* LEQ  */
+  YYSYMBOL_GEQ = 15,                       /* GEQ  */
+  YYSYMBOL_LE = 16,                        /* LE  */
+  YYSYMBOL_GE = 17,                        /* GE  */
+  YYSYMBOL_BRACKET_LEFT = 18,              /* BRACKET_LEFT  */
+  YYSYMBOL_BRACKET_RIGHT = 19,             /* BRACKET_RIGHT  */
+  YYSYMBOL_LINE_SEPARATOR = 20,            /* LINE_SEPARATOR  */
+  YYSYMBOL_YYACCEPT = 21,                  /* $accept  */
+  YYSYMBOL_input = 22,                     /* input  */
+  YYSYMBOL_op = 23,                        /* op  */
+  YYSYMBOL_instruction = 24,               /* instruction  */
+  YYSYMBOL_print = 25,                     /* print  */
+  YYSYMBOL_step = 26,                      /* step  */
+  YYSYMBOL_run = 27,                       /* run  */
+  YYSYMBOL_run_n = 28,                     /* run_n  */
+  YYSYMBOL_exit = 29,                      /* exit  */
+  YYSYMBOL_VAL = 30                        /* VAL  */
 };
 typedef enum yysymbol_kind_t yysymbol_kind_t;
 
@@ -463,21 +466,21 @@ union yyalloc
 #endif /* !YYCOPY_NEEDED */
 
 /* YYFINAL -- State number of the termination state.  */
-#define YYFINAL  16
+#define YYFINAL  20
 /* YYLAST -- Last index in YYTABLE.  */
-#define YYLAST   14
+#define YYLAST   16
 
 /* YYNTOKENS -- Number of terminals.  */
-#define YYNTOKENS  19
+#define YYNTOKENS  21
 /* YYNNTS -- Number of nonterminals.  */
-#define YYNNTS  9
+#define YYNNTS  10
 /* YYNRULES -- Number of rules.  */
-#define YYNRULES  17
+#define YYNRULES  21
 /* YYNSTATES -- Number of states.  */
-#define YYNSTATES  21
+#define YYNSTATES  26
 
 /* YYMAXUTOK -- Last valid token kind.  */
-#define YYMAXUTOK   273
+#define YYMAXUTOK   275
 
 
 /* YYTRANSLATE(TOKEN-NUM) -- Symbol number corresponding to TOKEN-NUM
@@ -518,15 +521,16 @@ static const yytype_int8 yytranslate[] =
        2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
        2,     2,     2,     2,     2,     2,     1,     2,     3,     4,
        5,     6,     7,     8,     9,    10,    11,    12,    13,    14,
-      15,    16,    17,    18
+      15,    16,    17,    18,    19,    20
 };
 
 #if YYDEBUG
 /* YYRLINE[YYN] -- Source line where rule number YYN was defined.  */
 static const yytype_int8 yyrline[] =
 {
-       0,    44,    44,    44,    47,    47,    49,    49,    49,    49,
-      51,    52,    53,    54,    56,    58,    60,    62
+       0,    46,    46,    46,    49,    49,    51,    51,    51,    51,
+      51,    53,    54,    55,    56,    57,    58,    60,    62,    64,
+      66,    68
 };
 #endif
 
@@ -544,16 +548,17 @@ yysymbol_name (yysymbol_kind_t yysymbol)
   static const char *const yy_sname[] =
   {
   "end of file", "error", "invalid token", "INT", "INSTRUCTION_PRINT",
-  "PRINT_REGISTER", "PRINT_PC_LINE", "PRINT_PC", "INSTRUCTION_STEP",
-  "INSTRUCTION_RUN", "INSTRUCTION_EXIT", "EQ", "LEQ", "GEQ", "LE", "GE",
-  "BRACKET_LEFT", "BRACKET_RIGHT", "LINE_SEPARATOR", "$accept", "input",
-  "op", "instruction", "print", "step", "run", "exit", "VAL", YY_NULLPTR
+  "PRINT_REGISTER", "PRINT_PC_LINE", "PRINT_PC", "PRINT_PROG",
+  "INSTRUCTION_STEP", "INSTRUCTION_GET", "INSTRUCTION_RUN",
+  "INSTRUCTION_EXIT", "EQ", "LEQ", "GEQ", "LE", "GE", "BRACKET_LEFT",
+  "BRACKET_RIGHT", "LINE_SEPARATOR", "$accept", "input", "op",
+  "instruction", "print", "step", "run", "run_n", "exit", "VAL", YY_NULLPTR
   };
   return yy_sname[yysymbol];
 }
 #endif
 
-#define YYPACT_NINF (-12)
+#define YYPACT_NINF (-14)
 
 #define yypact_value_is_default(Yyn) \
   ((Yyn) == YYPACT_NINF)
@@ -567,9 +572,9 @@ yysymbol_name (yysymbol_kind_t yysymbol)
    STATE-NUM.  */
 static const yytype_int8 yypact[] =
 {
-      -4,     2,   -12,   -12,   -12,   -12,     1,    -4,   -12,   -12,
-     -12,   -12,   -12,    -1,    -1,   -12,   -12,   -12,   -12,   -12,
-     -12
+      -4,     7,   -14,     0,   -14,   -14,     6,    -4,   -14,   -14,
+     -14,   -14,   -14,   -14,     0,     0,   -14,     0,   -14,   -14,
+     -14,   -14,   -14,   -14,     0,   -14
 };
 
 /* YYDEFACT[STATE-NUM] -- Default reduction number in state STATE-NUM.
@@ -577,21 +582,21 @@ static const yytype_int8 yypact[] =
    means the default is an error.  */
 static const yytype_int8 yydefact[] =
 {
-       2,     0,    14,    15,    16,     5,     0,     2,     4,     6,
-       7,     8,     9,     0,    12,    13,     1,     3,    17,    10,
-      11
+       2,     0,    17,    18,    20,     5,     0,     2,     4,     6,
+       7,     8,    10,     9,     0,    13,    16,    14,    21,    19,
+       1,     3,    11,    12,     0,    15
 };
 
 /* YYPGOTO[NTERM-NUM].  */
 static const yytype_int8 yypgoto[] =
 {
-     -12,     3,   -12,   -12,   -12,   -12,   -12,   -12,   -11
+     -14,     2,   -14,   -14,   -14,   -14,   -14,   -14,   -14,   -13
 };
 
 /* YYDEFGOTO[NTERM-NUM].  */
 static const yytype_int8 yydefgoto[] =
 {
-       0,     6,     7,     8,     9,    10,    11,    12,    19
+       0,     6,     7,     8,     9,    10,    11,    12,    13,    19
 };
 
 /* YYTABLE[YYPACT[STATE-NUM]] -- What to do in state STATE-NUM.  If
@@ -599,37 +604,39 @@ static const yytype_int8 yydefgoto[] =
    number is the opposite.  If YYTABLE_NINF, syntax error.  */
 static const yytype_int8 yytable[] =
 {
-       1,    16,    18,    20,     2,     3,     4,    13,    14,    15,
-      17,     0,     0,     0,     5
+       1,    22,    23,    18,    24,     2,    20,     3,     4,    21,
+       0,    25,    14,    15,    16,    17,     5
 };
 
 static const yytype_int8 yycheck[] =
 {
-       4,     0,     3,    14,     8,     9,    10,     5,     6,     7,
-       7,    -1,    -1,    -1,    18
+       4,    14,    15,     3,    17,     9,     0,    11,    12,     7,
+      -1,    24,     5,     6,     7,     8,    20
 };
 
 /* YYSTOS[STATE-NUM] -- The symbol kind of the accessing symbol of
    state STATE-NUM.  */
 static const yytype_int8 yystos[] =
 {
-       0,     4,     8,     9,    10,    18,    20,    21,    22,    23,
-      24,    25,    26,     5,     6,     7,     0,    20,     3,    27,
-      27
+       0,     4,     9,    11,    12,    20,    22,    23,    24,    25,
+      26,    27,    28,    29,     5,     6,     7,     8,     3,    30,
+       0,    22,    30,    30,    30,    30
 };
 
 /* YYR1[RULE-NUM] -- Symbol kind of the left-hand side of rule RULE-NUM.  */
 static const yytype_int8 yyr1[] =
 {
-       0,    19,    20,    20,    21,    21,    22,    22,    22,    22,
-      23,    23,    23,    23,    24,    25,    26,    27
+       0,    21,    22,    22,    23,    23,    24,    24,    24,    24,
+      24,    25,    25,    25,    25,    25,    25,    26,    27,    28,
+      29,    30
 };
 
 /* YYR2[RULE-NUM] -- Number of symbols on the right-hand side of rule RULE-NUM.  */
 static const yytype_int8 yyr2[] =
 {
        0,     2,     0,     2,     1,     1,     1,     1,     1,     1,
-       3,     3,     2,     2,     1,     1,     1,     1
+       1,     3,     3,     2,     2,     4,     2,     1,     1,     2,
+       1,     1
 };
 
 
@@ -1313,56 +1320,74 @@ yyreduce:
   YY_REDUCE_PRINT (yyn);
   switch (yyn)
     {
-  case 10: /* print: INSTRUCTION_PRINT PRINT_REGISTER VAL  */
-#line 51 "src/bison.y"
-                                            { print_register((yyvsp[0].i));   }
-#line 1320 "./bin/c/bison.tab.c"
-    break;
-
-  case 11: /* print: INSTRUCTION_PRINT PRINT_PC_LINE VAL  */
-#line 52 "src/bison.y"
-                                            { print_pc_line((yyvsp[0].i));    }
-#line 1326 "./bin/c/bison.tab.c"
-    break;
-
-  case 12: /* print: INSTRUCTION_PRINT PRINT_PC_LINE  */
+  case 11: /* print: INSTRUCTION_PRINT PRINT_REGISTER VAL  */
 #line 53 "src/bison.y"
-                                            { print_current_line(); }
-#line 1332 "./bin/c/bison.tab.c"
+                                            { print_register((yyvsp[0].i));                        }
+#line 1327 "./bin/c/bison.tab.c"
     break;
 
-  case 13: /* print: INSTRUCTION_PRINT PRINT_PC  */
+  case 12: /* print: INSTRUCTION_PRINT PRINT_PC_LINE VAL  */
 #line 54 "src/bison.y"
-                                            { print_pc();           }
-#line 1338 "./bin/c/bison.tab.c"
+                                            { print_pc_line((yyvsp[0].i));                         }
+#line 1333 "./bin/c/bison.tab.c"
     break;
 
-  case 14: /* step: INSTRUCTION_STEP  */
+  case 13: /* print: INSTRUCTION_PRINT PRINT_PC_LINE  */
+#line 55 "src/bison.y"
+                                            { print_current_line();                      }
+#line 1339 "./bin/c/bison.tab.c"
+    break;
+
+  case 14: /* print: INSTRUCTION_PRINT PRINT_PROG  */
 #line 56 "src/bison.y"
-                                            { YYACCEPT;                                  }
-#line 1344 "./bin/c/bison.tab.c"
+                                            { print_prog(0,get_prog_size());             }
+#line 1345 "./bin/c/bison.tab.c"
     break;
 
-  case 15: /* run: INSTRUCTION_RUN  */
+  case 15: /* print: INSTRUCTION_PRINT PRINT_PROG VAL VAL  */
+#line 57 "src/bison.y"
+                                            { print_prog((yyvsp[-1].i),(yyvsp[0].i));                         }
+#line 1351 "./bin/c/bison.tab.c"
+    break;
+
+  case 16: /* print: INSTRUCTION_PRINT PRINT_PC  */
 #line 58 "src/bison.y"
-                                            { run_end();printf("RUNNING\n");           }
-#line 1350 "./bin/c/bison.tab.c"
+                                            { print_pc();                                }
+#line 1357 "./bin/c/bison.tab.c"
     break;
 
-  case 16: /* exit: INSTRUCTION_EXIT  */
+  case 17: /* step: INSTRUCTION_STEP  */
 #line 60 "src/bison.y"
-                                            { switch_exit_prog();                        }
-#line 1356 "./bin/c/bison.tab.c"
+                                            { vm_step();                                 }
+#line 1363 "./bin/c/bison.tab.c"
     break;
 
-  case 17: /* VAL: INT  */
+  case 18: /* run: INSTRUCTION_RUN  */
 #line 62 "src/bison.y"
+                                            { while(vm_step()==0);                       }
+#line 1369 "./bin/c/bison.tab.c"
+    break;
+
+  case 19: /* run_n: INSTRUCTION_RUN VAL  */
+#line 64 "src/bison.y"
+                                            { for(int i = 0; i < (yyvsp[0].i) && !vm_step(); i++); }
+#line 1375 "./bin/c/bison.tab.c"
+    break;
+
+  case 20: /* exit: INSTRUCTION_EXIT  */
+#line 66 "src/bison.y"
+                                            { YYACCEPT;                                  }
+#line 1381 "./bin/c/bison.tab.c"
+    break;
+
+  case 21: /* VAL: INT  */
+#line 68 "src/bison.y"
           {(yyval.i)=(yyvsp[0].i);}
-#line 1362 "./bin/c/bison.tab.c"
+#line 1387 "./bin/c/bison.tab.c"
     break;
 
 
-#line 1366 "./bin/c/bison.tab.c"
+#line 1391 "./bin/c/bison.tab.c"
 
       default: break;
     }
@@ -1586,4 +1611,4 @@ yyreturnlab:
   return yyresult;
 }
 
-#line 64 "src/bison.y"
+#line 70 "src/bison.y"

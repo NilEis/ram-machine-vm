@@ -24,7 +24,9 @@
 %token PRINT_REGISTER
 %token PRINT_PC_LINE
 %token PRINT_PC
+%token PRINT_PROG
 %token INSTRUCTION_STEP
+%token INSTRUCTION_GET
 %token INSTRUCTION_RUN
 %token INSTRUCTION_EXIT
 
@@ -46,18 +48,22 @@ input: | op input
 
 op: instruction | LINE_SEPARATOR;
 
-instruction: print | step | run | exit;
+instruction: print | step | run | exit | run_n | get;
 
-print: INSTRUCTION_PRINT PRINT_REGISTER VAL { print_register($3);   } |
-       INSTRUCTION_PRINT PRINT_PC_LINE VAL  { print_pc_line($3);    } |
-       INSTRUCTION_PRINT PRINT_PC_LINE      { print_current_line(); } |
-       INSTRUCTION_PRINT PRINT_PC           { print_pc();           };
+print: INSTRUCTION_PRINT PRINT_REGISTER VAL { print_register($3);                        } |
+       INSTRUCTION_PRINT PRINT_PC_LINE VAL  { print_pc_line($3);                         } |
+       INSTRUCTION_PRINT PRINT_PC_LINE      { print_current_line();                      } |
+       INSTRUCTION_PRINT PRINT_PROG         { print_prog(0,get_prog_size());             } |
+       INSTRUCTION_PRINT PRINT_PROG VAL VAL { print_prog($3,$4);                         } |
+       INSTRUCTION_PRINT PRINT_PC           { print_pc();                                };
 
-step: INSTRUCTION_STEP                      { YYACCEPT;                                  };
+step: INSTRUCTION_STEP                      { vm_step();                                 };
 
-run: INSTRUCTION_RUN                        { run_end();printf("RUNNING\n");           };
+run: INSTRUCTION_RUN                        { while(vm_step()==0);                       };
 
-exit: INSTRUCTION_EXIT                      { switch_exit_prog();                        };
+run_n: INSTRUCTION_RUN VAL                  { for(int i = 0; i < $2 && !vm_step(); i++); };
+
+exit: INSTRUCTION_EXIT                      { YYACCEPT;                                  };
 
 VAL:  INT {$$=$1;}
 ;

@@ -59,17 +59,19 @@ extern int yydebug;
     PRINT_REGISTER = 260,          /* PRINT_REGISTER  */
     PRINT_PC_LINE = 261,           /* PRINT_PC_LINE  */
     PRINT_PC = 262,                /* PRINT_PC  */
-    INSTRUCTION_STEP = 263,        /* INSTRUCTION_STEP  */
-    INSTRUCTION_RUN = 264,         /* INSTRUCTION_RUN  */
-    INSTRUCTION_EXIT = 265,        /* INSTRUCTION_EXIT  */
-    EQ = 266,                      /* EQ  */
-    LEQ = 267,                     /* LEQ  */
-    GEQ = 268,                     /* GEQ  */
-    LE = 269,                      /* LE  */
-    GE = 270,                      /* GE  */
-    BRACKET_LEFT = 271,            /* BRACKET_LEFT  */
-    BRACKET_RIGHT = 272,           /* BRACKET_RIGHT  */
-    LINE_SEPARATOR = 273           /* LINE_SEPARATOR  */
+    PRINT_PROG = 263,              /* PRINT_PROG  */
+    INSTRUCTION_STEP = 264,        /* INSTRUCTION_STEP  */
+    INSTRUCTION_GET = 265,         /* INSTRUCTION_GET  */
+    INSTRUCTION_RUN = 266,         /* INSTRUCTION_RUN  */
+    INSTRUCTION_EXIT = 267,        /* INSTRUCTION_EXIT  */
+    EQ = 268,                      /* EQ  */
+    LEQ = 269,                     /* LEQ  */
+    GEQ = 270,                     /* GEQ  */
+    LE = 271,                      /* LE  */
+    GE = 272,                      /* GE  */
+    BRACKET_LEFT = 273,            /* BRACKET_LEFT  */
+    BRACKET_RIGHT = 274,           /* BRACKET_RIGHT  */
+    LINE_SEPARATOR = 275           /* LINE_SEPARATOR  */
   };
   typedef enum yytokentype yytoken_kind_t;
 #endif
@@ -82,7 +84,7 @@ union YYSTYPE
 
   uint16_t i;
 
-#line 86 "./bin/c/bison.tab.h"
+#line 88 "./bin/c/bison.tab.h"
 
 };
 typedef union YYSTYPE YYSTYPE;

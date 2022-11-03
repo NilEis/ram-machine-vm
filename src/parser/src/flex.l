@@ -18,13 +18,15 @@ WHITESPACE [ \t\r]
 ALPHABET [a-zA-Z0-9_\\\%:;,. ]
 %%
 
-EXIT                      {return INSTRUCTION_EXIT;                                                                       }
+EXIT|QUIT                 {return INSTRUCTION_EXIT;                                                                       }
+GET                       {return INSTRUCTION_GET;                                                                        }
 STEP                      {return INSTRUCTION_STEP;                                                                       }
 RUN                       {return INSTRUCTION_RUN;                                                                        }
 PRINT                     {return INSTRUCTION_PRINT;                                                                      }
-REGISTER                  {return PRINT_REGISTER;                                                                         }
+REGISTER|REG              {return PRINT_REGISTER;                                                                         }
 LINE                      {return PRINT_PC_LINE;                                                                          }
 PC                        {return PRINT_PC;                                                                               }
+PROGRAM|PROG              {return PRINT_PROG;                                                                             }
 \=                        {return EQ;                                                                                     }
 \<\=                      {return LEQ;                                                                                    }
 \>\=                      {return GEQ;                                                                                    }
