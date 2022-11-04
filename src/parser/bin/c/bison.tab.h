@@ -56,23 +56,26 @@ extern int yydebug;
     YYUNDEF = 257,                 /* "invalid token"  */
     INT = 258,                     /* INT  */
     INSTRUCTION_PRINT = 259,       /* INSTRUCTION_PRINT  */
-    PRINT_REGISTER = 260,          /* PRINT_REGISTER  */
+    REGISTER = 260,                /* REGISTER  */
     PRINT_PC_LINE = 261,           /* PRINT_PC_LINE  */
     PRINT_PC = 262,                /* PRINT_PC  */
     PRINT_PROG = 263,              /* PRINT_PROG  */
     INSTRUCTION_STEP = 264,        /* INSTRUCTION_STEP  */
     INSTRUCTION_GET = 265,         /* INSTRUCTION_GET  */
-    INSTRUCTION_RUN = 266,         /* INSTRUCTION_RUN  */
-    INSTRUCTION_EXIT = 267,        /* INSTRUCTION_EXIT  */
-    INSTRUCTION_CLEAR = 268,       /* INSTRUCTION_CLEAR  */
-    EQ = 269,                      /* EQ  */
-    LEQ = 270,                     /* LEQ  */
-    GEQ = 271,                     /* GEQ  */
-    LE = 272,                      /* LE  */
-    GE = 273,                      /* GE  */
-    BRACKET_LEFT = 274,            /* BRACKET_LEFT  */
-    BRACKET_RIGHT = 275,           /* BRACKET_RIGHT  */
-    LINE_SEPARATOR = 276           /* LINE_SEPARATOR  */
+    INSTRUCTION_SET = 266,         /* INSTRUCTION_SET  */
+    INSTRUCTION_RUN = 267,         /* INSTRUCTION_RUN  */
+    INSTRUCTION_EXIT = 268,        /* INSTRUCTION_EXIT  */
+    INSTRUCTION_CLEAR = 269,       /* INSTRUCTION_CLEAR  */
+    INSTRUCTION_BREAK = 270,       /* INSTRUCTION_BREAK  */
+    INSTRUCTION_HELP = 271,        /* INSTRUCTION_HELP  */
+    EQ = 272,                      /* EQ  */
+    LEQ = 273,                     /* LEQ  */
+    GEQ = 274,                     /* GEQ  */
+    LE = 275,                      /* LE  */
+    GE = 276,                      /* GE  */
+    BRACKET_LEFT = 277,            /* BRACKET_LEFT  */
+    BRACKET_RIGHT = 278,           /* BRACKET_RIGHT  */
+    LINE_SEPARATOR = 279           /* LINE_SEPARATOR  */
   };
   typedef enum yytokentype yytoken_kind_t;
 #endif
@@ -85,7 +88,7 @@ union YYSTYPE
 
   uint16_t i;
 
-#line 89 "./bin/c/bison.tab.h"
+#line 92 "./bin/c/bison.tab.h"
 
 };
 typedef union YYSTYPE YYSTYPE;

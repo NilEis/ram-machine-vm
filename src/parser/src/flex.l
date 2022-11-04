@@ -18,21 +18,24 @@ WHITESPACE [ \t\r]
 ALPHABET [a-zA-Z0-9_\\\%:;,. ]
 %%
 
-EXIT|QUIT                 {return INSTRUCTION_EXIT;                                                                       }
-GET                       {return INSTRUCTION_GET;                                                                        }
-STEP                      {return INSTRUCTION_STEP;                                                                       }
-RUN                       {return INSTRUCTION_RUN;                                                                        }
-PRINT                     {return INSTRUCTION_PRINT;                                                                      }
-clear|cls                 {return INSTRUCTION_CLEAR;                                                                      }
-REGISTER|REG              {return PRINT_REGISTER;                                                                         }
-LINE                      {return PRINT_PC_LINE;                                                                          }
-PC                        {return PRINT_PC;                                                                               }
-PROGRAM|PROG              {return PRINT_PROG;                                                                             }
-\=                        {return EQ;                                                                                     }
-\<\=                      {return LEQ;                                                                                    }
-\>\=                      {return GEQ;                                                                                    }
-\<                        {return LE;                                                                                     }
-\>                        {return GE;                                                                                     }
+EXIT|QUIT                 { return INSTRUCTION_EXIT;                                                                      }
+GET                       { return INSTRUCTION_GET;                                                                       }
+SET                       { return INSTRUCTION_SET;                                                                       }
+STEP                      { return INSTRUCTION_STEP;                                                                      }
+RUN                       { return INSTRUCTION_RUN;                                                                       }
+PRINT                     { return INSTRUCTION_PRINT;                                                                     }
+CLEAR|CLS                 { return INSTRUCTION_CLEAR;                                                                     }
+BREAK|BRK                 { return INSTRUCTION_BREAK;                                                                     }
+HELP                      { return INSTRUCTION_HELP;                                                                      }
+REGISTER|REG              { return REGISTER;                                                                              }
+LINE                      { return PRINT_PC_LINE;                                                                         }
+PC                        { return PRINT_PC;                                                                              }
+PROGRAM|PROG              { return PRINT_PROG;                                                                            }
+\=                        { return EQ;                                                                                    }
+\<\=                      { return LEQ;                                                                                   }
+\>\=                      { return GEQ;                                                                                   }
+\<                        { return LE;                                                                                    }
+\>                        { return GE;                                                                                    }
 \(                        { return BRACKET_LEFT;                                                                          }
 \)                        { return BRACKET_RIGHT;                                                                         }
 \n                        { return LINE_SEPARATOR;                                                                        }

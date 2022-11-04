@@ -41,6 +41,7 @@ typedef struct
 typedef struct
 {
     op_code_t op;
+    uint8_t breakpoint;
     union
     {
         uint16_t int_v;
