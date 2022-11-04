@@ -64,14 +64,15 @@ extern int yydebug;
     INSTRUCTION_GET = 265,         /* INSTRUCTION_GET  */
     INSTRUCTION_RUN = 266,         /* INSTRUCTION_RUN  */
     INSTRUCTION_EXIT = 267,        /* INSTRUCTION_EXIT  */
-    EQ = 268,                      /* EQ  */
-    LEQ = 269,                     /* LEQ  */
-    GEQ = 270,                     /* GEQ  */
-    LE = 271,                      /* LE  */
-    GE = 272,                      /* GE  */
-    BRACKET_LEFT = 273,            /* BRACKET_LEFT  */
-    BRACKET_RIGHT = 274,           /* BRACKET_RIGHT  */
-    LINE_SEPARATOR = 275           /* LINE_SEPARATOR  */
+    INSTRUCTION_CLEAR = 268,       /* INSTRUCTION_CLEAR  */
+    EQ = 269,                      /* EQ  */
+    LEQ = 270,                     /* LEQ  */
+    GEQ = 271,                     /* GEQ  */
+    LE = 272,                      /* LE  */
+    GE = 273,                      /* GE  */
+    BRACKET_LEFT = 274,            /* BRACKET_LEFT  */
+    BRACKET_RIGHT = 275,           /* BRACKET_RIGHT  */
+    LINE_SEPARATOR = 276           /* LINE_SEPARATOR  */
   };
   typedef enum yytokentype yytoken_kind_t;
 #endif
@@ -84,7 +85,7 @@ union YYSTYPE
 
   uint16_t i;
 
-#line 88 "./bin/c/bison.tab.h"
+#line 89 "./bin/c/bison.tab.h"
 
 };
 typedef union YYSTYPE YYSTYPE;

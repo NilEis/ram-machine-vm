@@ -29,6 +29,7 @@
 %token INSTRUCTION_GET
 %token INSTRUCTION_RUN
 %token INSTRUCTION_EXIT
+%token INSTRUCTION_CLEAR
 
 %token EQ
 %token LEQ
@@ -48,7 +49,7 @@ input: | op input
 
 op: instruction | LINE_SEPARATOR;
 
-instruction: print | step | run | exit | run_n | get;
+instruction: print | step | run | exit | run_n | get | clear;
 
 print: INSTRUCTION_PRINT PRINT_REGISTER VAL { print_register($3);                        } |
        INSTRUCTION_PRINT PRINT_PC_LINE VAL  { print_pc_line($3);                         } |
@@ -64,6 +65,10 @@ run: INSTRUCTION_RUN                        { while(vm_step()==0);              
 run_n: INSTRUCTION_RUN VAL                  { for(int i = 0; i < $2 && !vm_step(); i++); };
 
 exit: INSTRUCTION_EXIT                      { YYACCEPT;                                  };
+
+get: INSTRUCTION_GET                        { printf("Not implemented\n");               };
+
+clear: INSTRUCTION_CLEAR                    { vm_clear();                                };
 
 VAL:  INT {$$=$1;}
 ;

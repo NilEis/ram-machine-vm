@@ -269,7 +269,15 @@ int vm_step()
 
 void print_prog(uint32_t start, uint32_t stop)
 {
-    for (int i = 0; i < op_num; i++)
+    if (stop >= op_num)
+    {
+        stop = op_num-1;
+    }
+    if (start >= stop)
+    {
+        return;
+    }
+    for (int i = start; i <= stop; i++)
     {
         print_pc_line(i);
     }
@@ -297,6 +305,7 @@ void print_pc_line(uint32_t line)
         c_logger_log(C_LOGGER_ERROR, "Line out of bounds\n");
         return;
     }
+    c_logger_log(C_LOGGER_INFO, "%" PRIu32 ": ", line);
     switch (mem[line].op)
     {
     case DEF_LOAD:
@@ -379,6 +388,11 @@ void print_pc_line(uint32_t line)
 void print_current_line()
 {
     print_pc_line(pc);
+}
+
+void vm_clear()
+{
+    terminal_clear();
 }
 
 void print_pc()

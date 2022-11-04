@@ -10,5 +10,6 @@ void print_prog(uint32_t start, uint32_t stop);
 uint32_t get_prog_size();
 void switch_exit_prog();
 int vm_step();
+void vm_clear();
 
 #endif // PRINT_FUNCTIONS_H

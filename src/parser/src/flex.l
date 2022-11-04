@@ -23,6 +23,7 @@ GET                       {return INSTRUCTION_GET;                              
 STEP                      {return INSTRUCTION_STEP;                                                                       }
 RUN                       {return INSTRUCTION_RUN;                                                                        }
 PRINT                     {return INSTRUCTION_PRINT;                                                                      }
+clear|cls                 {return INSTRUCTION_CLEAR;                                                                      }
 REGISTER|REG              {return PRINT_REGISTER;                                                                         }
 LINE                      {return PRINT_PC_LINE;                                                                          }
 PC                        {return PRINT_PC;                                                                               }
