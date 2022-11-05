@@ -15,9 +15,10 @@
 #define NUM_REGISTERS 4096
 
 op_code_struct_t *mem = NULL;
-uint16_t registers[NUM_REGISTERS] = {0, 4, 5};
+uintmax_t registers[NUM_REGISTERS] = {0, 4, 5};
 uint32_t pc = 0;
 uint64_t op_num = 0;
+uint64_t number_steps = 0;
 
 int main(int argc, char **argv)
 {
@@ -148,6 +149,7 @@ int vm_step()
         return 3;
     }
     uint16_t opcode = mem[pc].op;
+    number_steps++;
     switch (opcode)
     {
     case DEF_LOAD:
@@ -312,7 +314,7 @@ void print_help()
     c_logger_log(C_LOGGER_INFO, "    - print [program|prog]                      -    prints the program\n");
     c_logger_log(C_LOGGER_INFO, "    - print pc                                  -    prints program counter (line number)\n");
     c_logger_log(C_LOGGER_INFO, "- set\n");
-    c_logger_log(C_LOGGER_INFO, "    - set [register|reg] [0-" xstr(NUM_REGISTERS) "]=[0-" xstr(UINT16_MAX) "]     -    sets register to value\n");
+    c_logger_log(C_LOGGER_INFO, "    - set [register|reg] [0-" xstr(NUM_REGISTERS) "]=[0-" xstr(UINTMAX_MAX) "]     -    sets register to value\n");
     c_logger_log(C_LOGGER_INFO, "- step\n");
     c_logger_log(C_LOGGER_INFO, "    - step                                      -    runs one iteration of the machine\n");
     c_logger_log(C_LOGGER_INFO, "- run\n");
@@ -324,6 +326,11 @@ void print_help()
     c_logger_log(C_LOGGER_INFO, "    - [clear|cls]                               -    Clears the screen\n");
     c_logger_log(C_LOGGER_INFO, "- break\n");
     c_logger_log(C_LOGGER_INFO, "    - [break|brk] [0-%4" PRIu32 "]                      -    Switches a breakpoint on/off\n", op_num);
+}
+
+void print_num_steps()
+{
+    c_logger_log(C_LOGGER_INFO, "Number of steps: %" PRIu64 "\n", number_steps);
 }
 
 void print_prog(uint32_t start, uint32_t stop)
@@ -356,20 +363,20 @@ void print_register(uint16_t reg, uint16_t reg2)
     }
     for (int i = reg; i <= reg2; i++)
     {
-        printf("c(%" PRIu16 ") = %" PRIu16 ";\n", i, registers[i]);
+        printf("c(%" PRIu16 ") = %" PRIuMAX ";\n", i, registers[i]);
     }
 }
 
-void set_register(uint16_t reg, uint16_t v)
+void set_register(uint16_t reg, uintmax_t v)
 {
     if (reg >= NUM_REGISTERS)
     {
         c_logger_log(C_LOGGER_ERROR, "Register index out of bounds\n");
         return;
     }
-    printf("c(%" PRIu16 ") = %" PRIu16 " -> ", reg, registers[reg]);
+    printf("c(%" PRIu16 ") = %" PRIuMAX " -> ", reg, registers[reg]);
     registers[reg] = v;
-    printf("c(%" PRIu16 ") = %" PRIu16 ";\n", reg, registers[reg]);
+    printf("c(%" PRIu16 ") = %" PRIuMAX ";\n", reg, registers[reg]);
 }
 
 void print_pc_line(uint32_t line)

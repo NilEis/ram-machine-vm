@@ -11,8 +11,9 @@ uint32_t get_prog_size();
 void switch_exit_prog();
 int vm_step();
 void vm_clear();
-void set_register(uint16_t reg, uint16_t v);
+void set_register(uint16_t reg, uintmax_t v);
 void add_break_point(uint32_t l);
 void print_help();
+void print_num_steps();
 
 #endif // PRINT_FUNCTIONS_H

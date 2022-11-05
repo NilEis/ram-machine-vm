@@ -57,25 +57,26 @@ extern int yydebug;
     INT = 258,                     /* INT  */
     INSTRUCTION_PRINT = 259,       /* INSTRUCTION_PRINT  */
     REGISTER = 260,                /* REGISTER  */
-    PRINT_PC_LINE = 261,           /* PRINT_PC_LINE  */
-    PRINT_PC = 262,                /* PRINT_PC  */
-    PRINT_PROG = 263,              /* PRINT_PROG  */
-    INSTRUCTION_STEP = 264,        /* INSTRUCTION_STEP  */
-    INSTRUCTION_GET = 265,         /* INSTRUCTION_GET  */
-    INSTRUCTION_SET = 266,         /* INSTRUCTION_SET  */
-    INSTRUCTION_RUN = 267,         /* INSTRUCTION_RUN  */
-    INSTRUCTION_EXIT = 268,        /* INSTRUCTION_EXIT  */
-    INSTRUCTION_CLEAR = 269,       /* INSTRUCTION_CLEAR  */
-    INSTRUCTION_BREAK = 270,       /* INSTRUCTION_BREAK  */
-    INSTRUCTION_HELP = 271,        /* INSTRUCTION_HELP  */
-    EQ = 272,                      /* EQ  */
-    LEQ = 273,                     /* LEQ  */
-    GEQ = 274,                     /* GEQ  */
-    LE = 275,                      /* LE  */
-    GE = 276,                      /* GE  */
-    BRACKET_LEFT = 277,            /* BRACKET_LEFT  */
-    BRACKET_RIGHT = 278,           /* BRACKET_RIGHT  */
-    LINE_SEPARATOR = 279           /* LINE_SEPARATOR  */
+    PRINT_STEPS = 261,             /* PRINT_STEPS  */
+    PRINT_PC_LINE = 262,           /* PRINT_PC_LINE  */
+    PRINT_PC = 263,                /* PRINT_PC  */
+    PRINT_PROG = 264,              /* PRINT_PROG  */
+    INSTRUCTION_STEP = 265,        /* INSTRUCTION_STEP  */
+    INSTRUCTION_GET = 266,         /* INSTRUCTION_GET  */
+    INSTRUCTION_SET = 267,         /* INSTRUCTION_SET  */
+    INSTRUCTION_RUN = 268,         /* INSTRUCTION_RUN  */
+    INSTRUCTION_EXIT = 269,        /* INSTRUCTION_EXIT  */
+    INSTRUCTION_CLEAR = 270,       /* INSTRUCTION_CLEAR  */
+    INSTRUCTION_BREAK = 271,       /* INSTRUCTION_BREAK  */
+    INSTRUCTION_HELP = 272,        /* INSTRUCTION_HELP  */
+    EQ = 273,                      /* EQ  */
+    LEQ = 274,                     /* LEQ  */
+    GEQ = 275,                     /* GEQ  */
+    LE = 276,                      /* LE  */
+    GE = 277,                      /* GE  */
+    BRACKET_LEFT = 278,            /* BRACKET_LEFT  */
+    BRACKET_RIGHT = 279,           /* BRACKET_RIGHT  */
+    LINE_SEPARATOR = 280           /* LINE_SEPARATOR  */
   };
   typedef enum yytokentype yytoken_kind_t;
 #endif
@@ -86,9 +87,9 @@ union YYSTYPE
 {
 #line 16 "src/bison.y"
 
-  uint16_t i;
+  uintmax_t i;
 
-#line 92 "./bin/c/bison.tab.h"
+#line 93 "./bin/c/bison.tab.h"
 
 };
 typedef union YYSTYPE YYSTYPE;

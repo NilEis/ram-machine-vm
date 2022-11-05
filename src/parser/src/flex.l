@@ -31,6 +31,7 @@ REGISTER|REG              { return REGISTER;                                    
 LINE                      { return PRINT_PC_LINE;                                                                         }
 PC                        { return PRINT_PC;                                                                              }
 PROGRAM|PROG              { return PRINT_PROG;                                                                            }
+STEPS                     { return PRINT_STEPS;                                                                           }
 \=                        { return EQ;                                                                                    }
 \<\=                      { return LEQ;                                                                                   }
 \>\=                      { return GEQ;                                                                                   }
@@ -39,7 +40,7 @@ PROGRAM|PROG              { return PRINT_PROG;                                  
 \(                        { return BRACKET_LEFT;                                                                          }
 \)                        { return BRACKET_RIGHT;                                                                         }
 \n                        { return LINE_SEPARATOR;                                                                        }
-{DIGIT}+                  { yylval.i = atoi(yytext); return INT;                                                          }
+{DIGIT}+                  { sscanf(yytext, "%"SCNuMAX, &yylval.i); return INT;                                            }
 {WHITESPACE}              ;
 .                         ;
 %%

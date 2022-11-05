@@ -14,7 +14,7 @@
 %}
 %define parse.error detailed
 %union {
-  uint16_t i;
+  uintmax_t i;
 };
 
 
@@ -22,6 +22,7 @@
 
 %token INSTRUCTION_PRINT
 %token REGISTER
+%token PRINT_STEPS
 %token PRINT_PC_LINE
 %token PRINT_PC
 %token PRINT_PROG
@@ -60,6 +61,7 @@ print: INSTRUCTION_PRINT REGISTER VAL           { print_register($3, $3);       
        INSTRUCTION_PRINT PRINT_PC_LINE          { print_current_line();                      } |
        INSTRUCTION_PRINT PRINT_PROG             { print_prog(0,get_prog_size());             } |
        INSTRUCTION_PRINT PRINT_PROG VAL VAL     { print_prog($3,$4);                         } |
+       INSTRUCTION_PRINT PRINT_STEPS            { print_num_steps();                         } |
        INSTRUCTION_PRINT PRINT_PC               { print_pc();                                };
 
 set: INSTRUCTION_SET REGISTER VAL EQ VAL        { set_register($3, $5);                      };
