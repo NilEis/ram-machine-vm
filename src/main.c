@@ -12,10 +12,10 @@
 #define str(s) #s
 #define foo 4
 
-#define NUM_REGISTERS 4096
+#define NUM_REGISTERS 32768
 
 op_code_struct_t *mem = NULL;
-uintmax_t registers[NUM_REGISTERS] = {0, 4, 5};
+uintmax_t registers[NUM_REGISTERS] = { 0 };
 uint32_t pc = 0;
 uint64_t op_num = 0;
 uint64_t number_steps = 0;
@@ -53,6 +53,10 @@ int main(int argc, char **argv)
         return -1;
     }
     fread(tmp, sizeof(uint16_t), len, in);
+    uint16_t data_size = 0;
+    fread(&data_size, sizeof(uint16_t), 1, in);
+    c_logger_log(C_LOGGER_INFO, "Data size: %" PRIu16 "\n", data_size);
+    fread(&registers, sizeof(uintmax_t), data_size, in);
     fclose(in);
     {
         int i = 0;
